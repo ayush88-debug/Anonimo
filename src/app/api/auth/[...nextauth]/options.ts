@@ -51,7 +51,7 @@ export const nextAuthOptions :NextAuthOptions = {
 
    callbacks: {
         async jwt({ token, user }) {
-            if(user){
+            if(user._id){
                 token._id= user._id.toString()
                 token.isVerified= user.isVerified
                 token.isAcceptingMesages=user.isAcceptingMesages

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^1.1.0",
     "@react-email/components": "^0.0.41",
     "bcrypt": "^6.0.0",
     "mongoose": "^8.15.0",

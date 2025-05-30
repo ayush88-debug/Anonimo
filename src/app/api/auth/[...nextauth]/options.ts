@@ -51,8 +51,8 @@ export const nextAuthOptions :NextAuthOptions = {
 
    callbacks: {
         async jwt({ token, user }) {
-            if(user._id){
-                token._id= user._id.toString()
+            if(user){
+                token._id= user._id?.toString()
                 token.isVerified= user.isVerified
                 token.isAcceptingMesages=user.isAcceptingMesages
                 token.username= user.username
@@ -60,7 +60,7 @@ export const nextAuthOptions :NextAuthOptions = {
             return token
         },
         async session({ session, token }) {
-            if(session){
+            if(token){
                 session.user._id= token._id
                 session.user.isVerified= token.isVerified
                 session.user.isAcceptingMesages= token.isAcceptingMesages
@@ -75,5 +75,6 @@ export const nextAuthOptions :NextAuthOptions = {
     pages:{
         signIn:"/sign-in"
     },
-    secret:process.env.NEXTAUTH_SECRET
+    secret:process.env.NEXTAUTH_SECRET,
+    debug:true
 }

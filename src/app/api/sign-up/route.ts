@@ -23,7 +23,7 @@ export async function POST(request: Request){
                     message:"Username already exist"
                 },
                 {
-                    status:500
+                    status:400
                 }
             )
         }
@@ -40,7 +40,7 @@ export async function POST(request: Request){
                         message:"Username with Email already exist"
                     },
                     {
-                        status:500
+                        status:400
                     }
                 )
             }else{
@@ -56,6 +56,22 @@ export async function POST(request: Request){
                 await userByEmail.save()
             }
         }else{
+            const UserBYUsername= await UserModel.findOne({
+                username,
+            })
+
+            if(UserBYUsername){
+                return Response.json(
+                    {
+                        success:false,
+                        message:"Username is already taken, Try another."
+                    },
+                    {
+                        status:400
+                    }
+                )
+            }
+
             const hashedPassword= await bcrypt.hash(password, 10);
             const expiryTime= new Date();
             expiryTime.setHours(expiryTime.getHours() + 1)

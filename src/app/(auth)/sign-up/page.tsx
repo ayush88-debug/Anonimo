@@ -112,7 +112,7 @@ return (
                   <FormLabel className="text-gray-300">Username</FormLabel>
                   <FormControl>
                     <Input
-                      className="bg-gray-800 border border-gray-700 text-white placeholder-gray-500"
+                      className="bg-gray-800 border-none mask-auto border-gray-700 text-white placeholder-gray-500"
                       placeholder="Username"
                       {...field}
                       onChange={(e) => {
@@ -147,7 +147,7 @@ return (
                   <FormLabel className="text-gray-300">Email</FormLabel>
                   <FormControl>
                     <Input
-                      className="bg-gray-800 border border-gray-700 text-white placeholder-gray-500"
+                      className="bg-gray-800 border border-none mask-auto border-gray-700 text-white placeholder-gray-500"
                       placeholder="you@example.com"
                       {...field}
                     />
@@ -168,7 +168,7 @@ return (
                   <FormControl>
                     <Input
                       type="password"
-                      className="bg-gray-800 border border-gray-700 text-white placeholder-gray-500"
+                      className="bg-gray-800 border border-none mask-auto border-gray-700 text-white placeholder-gray-500"
                       placeholder="Password"
                       {...field}
                     />

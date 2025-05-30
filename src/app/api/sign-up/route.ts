@@ -48,6 +48,7 @@ export async function POST(request: Request){
                 const expiryTime= new Date();
                 expiryTime.setHours(expiryTime.getHours() + 1)
 
+                userByEmail.username=username
                 userByEmail.password= hashedPassword
                 userByEmail.verifycode=verifyCode
                 userByEmail.verifycodeExpiry= expiryTime

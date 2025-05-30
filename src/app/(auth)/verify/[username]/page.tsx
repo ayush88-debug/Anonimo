@@ -11,7 +11,7 @@ import { Loader2 } from "lucide-react";
 import {useParams, useRouter } from "next/navigation"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 
@@ -116,7 +116,6 @@ export default function VerifyPage() {
         </form>
       </Form>
     </div>
-    <ToastContainer />
   </div>
   )
 }

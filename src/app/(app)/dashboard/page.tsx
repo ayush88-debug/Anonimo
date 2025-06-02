@@ -1,19 +1,27 @@
-'use client'
+'use client';
 
+import { Button } from '@/components/ui/button';
+import { Loader2 } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
 
-  console.log("Session:", session);
-  console.log("Status:", status);
-
-  if (status === "loading") {
-    return <div className="text-white">Loading...</div>;
+  if (status === 'loading') {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-950 text-white">
+        <Loader2 className='animate-spin'/>
+      </div>
+    );
   }
 
-  if (status === "unauthenticated") {
-    return <div className="text-red-500">You are not logged in</div>;
+  if (status === 'unauthenticated') {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-950 text-red-500">
+        You are not logged in
+        <Button onClick={()=> signOut()}></Button>
+      </div>
+    );
   }
 
   return (

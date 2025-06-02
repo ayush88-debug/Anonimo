@@ -3,7 +3,7 @@ import mongoose, {Schema, Document} from "mongoose";
 
 export interface Message extends Document{
     content: string;
-    ceratedAt: Date;
+    createdAt: Date;
 }
 
 const messageSchema : Schema<Message> = new Schema({
@@ -11,7 +11,7 @@ const messageSchema : Schema<Message> = new Schema({
         type:String,
         required:[true,"Content is required"],
     },
-    ceratedAt:{
+    createdAt:{
         type:Date,
         required:[true, "ceratedAt is required"],
         default: Date.now()

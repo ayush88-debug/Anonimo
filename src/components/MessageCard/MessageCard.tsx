@@ -12,7 +12,7 @@ import dayjs from "dayjs"
 
 type MessageCardProp= {
     message: Message,
-    onMessageDelete: (messageId: string)=> string
+    onMessageDelete: (messageId: string)=> void
 }
 
 export default function MessageCard({message, onMessageDelete}: MessageCardProp) {

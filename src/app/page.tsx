@@ -6,7 +6,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { motion } from "framer-motion";
 import Autoplay from 'embla-carousel-autoplay'
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { GithubIcon } from "lucide-react";
+import { LampContainer } from "@/components/ui/lamp";
 
 export default function LandingPage() {
 const demoMessages = [
@@ -53,31 +54,35 @@ const demoMessages = [
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white px-4 py-12 pt-24 pb-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Hero Section */}
-        <motion.section
-          className="text-center space-y-6 mb-20"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+    <div className="min-h-screen bg-gradient-to-b bg-slate-950 text-white px-4 py-12 font-sans">
+     
+        {/* Lamp */}
+        <LampContainer>
+        <motion.div
+          initial={{ opacity: 0.5, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+          className="text-center space-y-8"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight pt-16">
             Share Thoughts <br className="hidden md:inline" />
             <span className="text-indigo-500">Without Revealing Identity</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Anonimo lets anyone send you anonymous messages. No signups. No pressure. Just honest thoughts.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-6">
             <Link href={"/dashboard"}>
               <Button className="bg-indigo-600 hover:bg-indigo-700 cursor-pointer">Try Anonimo</Button>
             </Link>
-            <Link href={"https://github.com/ayush88-debug/Anonimo"} target="_blank">
-              <Button variant="secondary" className="cursor-pointer"><Github /> <span>Github</span></Button>
+            <Link href={"https://github.com/ayush88-debug/Anonimo"}>
+              <Button variant="secondary" className="cursor-pointer"><GithubIcon/><span>GitHub</span></Button>
             </Link>
           </div>
-        </motion.section>
+        </motion.div>
+      </LampContainer>
+
+      <div className="max-w-6xl mx-auto">
 
         {/* Features Section */}
         <motion.section

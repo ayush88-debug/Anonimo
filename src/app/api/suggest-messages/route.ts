@@ -23,6 +23,7 @@ export async function POST(request: Request) {
             Keep questions short, simple, and engaging.
 
             Do **not** include any explanation or intro—return only the formatted string of questions.
+            Get quirky, funny, and thoughtful message ideas to spark more interactions.
             `;
 
         const response = await ai.models.generateContentStream({

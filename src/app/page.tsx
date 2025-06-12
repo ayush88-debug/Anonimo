@@ -54,7 +54,7 @@ const demoMessages = [
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b bg-slate-950 text-white px-4 py-12 font-sans">
+    <div className="min-h-screen bg-gradient-to-b bg-slate-950 text-white py-12 font-sans">
      
         {/* Lamp */}
         <LampContainer>
@@ -86,7 +86,7 @@ const demoMessages = [
 
         {/* Features Section */}
         <motion.section
-          className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-6 px-4"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -118,7 +118,7 @@ const demoMessages = [
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-2xl font-bold text-center mb-6">Anonymous Messages</h2>
-          <Carousel className="w-full max-w-2xl mx-auto" plugins={[Autoplay({ delay: 2500 })]}>
+          <Carousel className="w-2/3 mx-auto" plugins={[Autoplay({ delay: 2500 })]}>
             <CarouselContent>
               {demoMessages.map((msg, index) => (
                 <CarouselItem key={index} className="p-4">

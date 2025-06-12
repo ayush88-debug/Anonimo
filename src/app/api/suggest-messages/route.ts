@@ -4,7 +4,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const runtime = 'edge';
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
     try {
         const prompt = `
             You are a creative assistant for an anonymous social messaging platform similar to Qooh.me.
@@ -18,12 +18,13 @@ export async function POST(request: Request) {
             Each time you're called, generate a **fresh and different** set of questions—do not reuse or repeat previous examples or formats.
 
             Format the output as a **single string**, separating the questions with double pipes like this:  
-            "Question 1||Question 2||Question 3"
+            Question 1||Question 2||Question 3||Question 4
 
             Keep questions short, simple, and engaging.
 
             Do **not** include any explanation or intro—return only the formatted string of questions.
             Get quirky, funny, and thoughtful message ideas to spark more interactions.
+            give me 4 quesions strickty please.
             `;
 
         const response = await ai.models.generateContentStream({
@@ -36,16 +37,17 @@ export async function POST(request: Request) {
             fullText += chunk.text || '';
         }
 
-        return new Response(fullText, {
-            status: 200,
-            headers: { 'Content-Type': 'text/plain' }
-        });
+        return  Response.json({
+            success: true,
+            message:"Successfully fetched suggesions",
+            fullText
+        },{status:200});
 
     } catch (error) {
         console.error("AI Generation Error:", error);
-        return new Response(
-            JSON.stringify({ error: error.message || 'Unknown error' }),
-            { status: 500, headers: { 'Content-Type': 'application/json' } }
-        );
+        return  Response.json({
+            success: false,
+            message: 'Please, try again later',
+        },{status:500});
     }
 }

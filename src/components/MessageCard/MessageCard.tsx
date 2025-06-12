@@ -50,14 +50,14 @@ export default function MessageCard({message, onMessageDelete}: MessageCardProp)
           {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
-        <AlertDialog>
+        <AlertDialog >
         <AlertDialogTrigger asChild>
              <Button variant='destructive'>
                 <X className="w-5 h-5" />
               </Button>
         </AlertDialogTrigger>
-        <AlertDialogContent>
-            <AlertDialogHeader>
+        <AlertDialogContent className='dark'>
+            <AlertDialogHeader className='text-white'>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
                 This action cannot be undone. This will permanently delete this
@@ -65,7 +65,7 @@ export default function MessageCard({message, onMessageDelete}: MessageCardProp)
             </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className='dark text-white'>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>

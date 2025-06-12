@@ -5,4 +5,5 @@ export interface apiResponse{
     message:string,
     isAcceptingMessages?:boolean,
     messages?:Message[]
+    fullText?:string
 } 

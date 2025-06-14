@@ -47,11 +47,10 @@ export async function POST(request:Request) {
 
         
     } catch (error) {
-        console.log("Error in Updating accept messages status", error)
         return Response.json(
             {
                 success:false,
-                message:"Error in Updating accept messages status"
+                message: error?.message || "Error in Updating accept messages status"
             },{status: 500}
         )
     }

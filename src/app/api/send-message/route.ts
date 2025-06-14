@@ -39,11 +39,10 @@ export async function POST(request:Request) {
         )
         
     } catch (error) {
-        console.log("Error in sending Message", error)
         return Response.json(
             {
                 success:false,
-                message:"Error in sending Message"
+                message: error.message || "Error in sending Message"
             },{status: 500}
         )
     }

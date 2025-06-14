@@ -57,7 +57,6 @@ function SenderPage() {
     setIsRefreshing(true)
     try {
       const response = await axios.get<apiResponse>('/api/suggest-messages')
-      console.log(response.data.fullText)
       if (response.data.fullText) {
         const suggestions = response.data.fullText.split('||').map((msg:string) => msg.trim()).filter(Boolean)
         setDemoMessages(suggestions)

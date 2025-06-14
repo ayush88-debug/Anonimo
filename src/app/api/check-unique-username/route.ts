@@ -19,7 +19,6 @@ export async function GET(request: Request){
 
         const result= usernameQueryvalidation.safeParse(queryParam)
 
-        console.log(result?.error?.format().username?._errors)
         if(!result.success){
             const usernameError=result?.error?.format().username?._errors || []
             return Response.json({
@@ -49,10 +48,9 @@ export async function GET(request: Request){
         
         
     } catch (error) {
-        console.log("Error in Check Unique username", error)
         return Response.json({
             success:false,
-            message:"Error in Check Unique username"
+            message: error.message || "Error in Check Unique username"
         }, {status:500})
     }
 }

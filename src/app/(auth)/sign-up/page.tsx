@@ -77,7 +77,6 @@ export default function SignUpForm() {
         } catch (err) {
 
           const axiosError= err as AxiosError<apiResponse>
-          console.log("Error during SignUp: ", axiosError.response?.data.message)
 
             const errorMessage= axiosError.response?.data.message || 'There was a problem with your sign-up. Please try again.'
 

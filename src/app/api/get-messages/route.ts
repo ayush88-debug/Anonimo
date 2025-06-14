@@ -46,11 +46,10 @@ export async function GET(request:Request) {
         )
         
     } catch (error) {
-        console.log("Error in getting Messages", error)
         return Response.json(
             {
                 success:false,
-                message:"Error in getting Messages"
+                message: error.message || "Error in getting Messages"
             },{status: 500}
         )
     }

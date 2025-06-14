@@ -47,7 +47,6 @@ export default function VerifyPage() {
         } catch (err) {
 
             const axiosError= err as AxiosError<apiResponse>
-            console.log("Error in verifying code:", axiosError.response?.data.message)
 
             notifyError(axiosError.response?.data.message || "Error in verifying code")
             

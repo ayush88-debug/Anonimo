@@ -40,10 +40,8 @@ export default function SignUpForm() {
                 password: data.password
             })
 
-            console.log("Result of login:", result)
             if (result?.error) {
                 notifyError(result?.error || "Login Failed")
-                console.log(result.error)
             }
             if (result?.url) {
                 router.replace('/dashboard');

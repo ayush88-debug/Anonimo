@@ -48,7 +48,6 @@ export async function DELETE(request: Request){
         }, {status:200})
 
     } catch (err) {
-        console.error('Error deleting message:', err?.message);
         return Response.json({
             success:false,
             message: err?.message || "Error while deleting Message"

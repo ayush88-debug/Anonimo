@@ -43,8 +43,7 @@ export async function GET(request: Request) {
             fullText
         },{status:200});
 
-    } catch (error) {
-        console.error("AI Generation Error:", error);
+    } catch (err) {
         return  Response.json({
             success: false,
             message: 'Please, try again later',

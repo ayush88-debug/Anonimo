@@ -121,11 +121,10 @@ export async function POST(request: Request){
 
         
     } catch (error) {
-        console.log("Error while user sign up: ",error)
         return Response.json(
             {
                 success:false,
-                message:"Error while user sign up"
+                message: error.message || "Error while user sign up"
             },
             {
                 status:500

@@ -51,8 +51,8 @@ export default function SignUpForm() {
         }
     }
 return (
-  <div className="flex justify-center items-center min-h-screen bg-gray-950 text-white">
-    <div className="w-full max-w-md p-8 space-y-8 bg-gray-900 rounded-2xl shadow-xl border border-gray-700">
+  <div className="flex justify-center items-center min-h-screen bg-gray-950 text-white px-4">
+    <div className="w-full max-w-md p-6 space-y-8 bg-gray-900 rounded-2xl shadow-xl border border-gray-700">
       <div className="text-center">
         <h1 className="text-4xl font-extrabold tracking-tight mb-4">Join Anonimo</h1>
         <p className="text-gray-400 text-sm">Login to start your anonymous adventure</p>

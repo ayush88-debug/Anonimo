@@ -33,6 +33,12 @@ const Navbar = () => {
 
         {/* Authenticated Section */}
         {session?.user ? (
+          <div className="flex flex-row gap-x-10">
+          <Link href="/dashboard">
+            <Button className="bg-white hover:bg-slate-200 text-black cursor-pointer">
+              Dashboard
+            </Button>
+          </Link>
           <Popover>
             <PopoverTrigger asChild>
               <Avatar className="cursor-pointer hover:opacity-90">
@@ -66,6 +72,7 @@ const Navbar = () => {
               </div>
             </PopoverContent>
           </Popover>
+          </div>
         ) : (
           <Link href="/sign-in">
             <Button className="bg-white hover:bg-slate-200 text-black cursor-pointer">

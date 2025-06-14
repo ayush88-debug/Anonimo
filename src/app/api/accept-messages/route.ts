@@ -46,18 +46,18 @@ export async function POST(request:Request) {
         )
 
         
-    } catch (error) {
+    } catch{
         return Response.json(
             {
                 success:false,
-                message: error?.message || "Error in Updating accept messages status"
+                message: "Error in Updating accept messages status"
             },{status: 500}
         )
     }
     
 }
 
-export async function GET(request:Request) {
+export async function GET() {
     dbConnect();
 
     try {
@@ -94,8 +94,7 @@ export async function GET(request:Request) {
         )
 
 
-    } catch (error) {
-        console.log("Error in fetching accept messages status", error)
+    } catch {
         return Response.json(
             {
                 success:false,

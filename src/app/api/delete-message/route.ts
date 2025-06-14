@@ -47,10 +47,10 @@ export async function DELETE(request: Request){
             message: "Message Deleted"
         }, {status:200})
 
-    } catch (err) {
+    } catch {
         return Response.json({
             success:false,
-            message: err?.message || "Error while deleting Message"
+            message: "Error while deleting Message"
         }, {status: 500})
     }
 }

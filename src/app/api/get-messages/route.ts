@@ -5,7 +5,7 @@ import { nextAuthOptions } from "../auth/[...nextauth]/options";
 import { User } from "next-auth";
 import mongoose from "mongoose";
 
-export async function GET(request:Request) {
+export async function GET() {
     dbConnect()
 
     try {
@@ -45,11 +45,11 @@ export async function GET(request:Request) {
             },{status:200}
         )
         
-    } catch (error) {
+    } catch {
         return Response.json(
             {
                 success:false,
-                message: error.message || "Error in getting Messages"
+                message: "Error in getting Messages"
             },{status: 500}
         )
     }

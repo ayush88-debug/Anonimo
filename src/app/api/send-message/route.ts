@@ -38,11 +38,11 @@ export async function POST(request:Request) {
             }, {status:201}
         )
         
-    } catch (error) {
+    } catch{
         return Response.json(
             {
                 success:false,
-                message: error.message || "Error in sending Message"
+                message: "Error in sending Message"
             },{status: 500}
         )
     }

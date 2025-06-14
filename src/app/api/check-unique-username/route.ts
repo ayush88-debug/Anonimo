@@ -47,10 +47,10 @@ export async function GET(request: Request){
         }, {status:200})
         
         
-    } catch (error) {
+    } catch {
         return Response.json({
             success:false,
-            message: error.message || "Error in Check Unique username"
+            message: "Error in Check Unique username"
         }, {status:500})
     }
 }

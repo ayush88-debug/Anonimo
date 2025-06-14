@@ -4,7 +4,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const runtime = 'edge';
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
         const prompt = `
             You are a creative assistant for an anonymous social messaging platform similar to Qooh.me.
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
             fullText
         },{status:200});
 
-    } catch (err) {
+    } catch {
         return  Response.json({
             success: false,
             message: 'Please, try again later',

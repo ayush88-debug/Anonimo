@@ -53,11 +53,11 @@ export async function POST(request: Request){
         }
 
         
-    } catch (err) {
+    } catch {
 
         return Response.json({
             success:false,
-            message:err.message || "Error while verifying code"
+            message:"Error while verifying code"
         },{status:500})
     }
 }

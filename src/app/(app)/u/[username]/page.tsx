@@ -13,7 +13,7 @@ import { Loader2, RefreshCw } from 'lucide-react'
 import { useParams } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast';
 import { z } from 'zod'
 
 function SenderPage() {
@@ -22,19 +22,11 @@ function SenderPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
 
-  const notifyError = (message: string) => toast.error(message, {
-    position: 'bottom-right',
-    theme: 'colored',
-    closeOnClick: true,
-    pauseOnHover: true
-  })
-
-  const notifySuccess = (message: string) => toast.success(message, {
-    position: 'bottom-right',
-    theme: 'colored',
-    closeOnClick: true,
-    pauseOnHover: true
-  })
+  const notifyError = (message: string) =>(
+    toast.error(message))
+    
+  const notifySuccess = (message: string) =>(
+    toast.success(message))
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
@@ -108,7 +100,9 @@ function SenderPage() {
               )}
             />
             <div className="w-full flex justify-center">
-                <Button type='submit' className='bg-indigo-600 hover:bg-indigo-700 min-w-1/2 z-10 cursor-pointer'>
+                <Button 
+                disabled={isSubmitting}
+                type='submit' className='bg-indigo-600 hover:bg-indigo-700 min-w-1/2 z-10 cursor-pointer'>
                 {isSubmitting ? (
               <>
                 <Loader2 className="animate-spin mr-2" />
@@ -134,6 +128,7 @@ function SenderPage() {
           size="sm"
           variant="secondary"
           className="text-sm px-3 py-2 cursor-pointer z-10"
+          disabled={isRefreshing}
         >
           {isRefreshing ? (
             <RefreshCw className="h-4 w-4 mr-1 animate-spin" />

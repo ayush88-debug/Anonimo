@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 import {useParams, useRouter } from "next/navigation"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { z } from "zod";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 
@@ -21,18 +21,11 @@ export default function VerifyPage() {
     const params= useParams<{username:string}>()
      const [isSubmitting, setIsSubmitting]= useState(false)
 
-    const notifyError = (message:string) => toast.error(message, {
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
-    const notifySuccess = (message:string) => toast.success(message,{
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
+    const notifyError = (message: string) =>(
+    toast.error(message))
+    
+    const notifySuccess = (message: string) =>(
+    toast.success(message))
 
     const form = useForm<z.infer<typeof verifySchema>>({
         resolver: zodResolver(verifySchema),

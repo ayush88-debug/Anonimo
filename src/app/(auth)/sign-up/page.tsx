@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'hooks-ts';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import { zodResolver } from "@hookform/resolvers/zod"
 import {  useForm } from "react-hook-form"
@@ -27,18 +26,13 @@ export default function SignUpForm() {
     const debouncedUsername = useDebounce(username, 500);
 
     const router = useRouter()
-    const notifyError = (message:string) => toast.error(message, {
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
-    const notifySuccess = (message:string) => toast.success(message,{
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
+    
+    const notifyError = (message: string) =>(
+    toast.error(message))
+    
+    const notifySuccess = (message: string) =>(
+    toast.success(message))
+
 
     const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signUpSchema),

@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast';
 import { zodResolver } from "@hookform/resolvers/zod"
 import {  useForm } from "react-hook-form"
 import { z } from "zod"
@@ -21,18 +20,8 @@ export default function SignUpForm() {
     const [isSubmitting, setIsSubmitting]= useState(false)
     const router = useRouter()
 
-    const notifyError = (message:string) => toast.error(message, {
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
-    const notifySuccess = (message:string) => toast.success(message,{
-        position: "bottom-right",
-        theme: "colored",
-        closeOnClick: true,
-        pauseOnHover: true,
-    });
+    const notifyError = (message: string) =>(
+      toast.error(message))
 
     const form = useForm<z.infer<typeof signInSchema>>({
         resolver: zodResolver(signInSchema),
@@ -57,7 +46,6 @@ export default function SignUpForm() {
                 console.log(result.error)
             }
             if (result?.url) {
-                notifySuccess("Logged In Successfully")
                 router.replace('/dashboard');
             }
         }finally{
@@ -103,12 +91,21 @@ return (
                 <FormItem>
                   <FormLabel className="text-gray-300">Password</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
-                      className="bg-gray-800 border border-none mask-auto border-gray-700 text-white placeholder-gray-500"
-                      placeholder="Password"
-                      {...field}
-                    />
+                    <div>
+                      <Input
+                        type="password"
+                        className="bg-gray-800 border border-none mask-auto border-gray-700 text-white placeholder-gray-500"
+                        placeholder="Password"
+                        {...field}
+                      />
+                      <div>
+                        <div 
+                        className='underline pt-2 hover:text-indigo-400 cursor-pointer' 
+                        // href={"/password-change"}
+                        onClick={()=> notifyError("password bhoolne ka feature chahiye? Hum bhi bhool gaye banana 😂, Thoda intezaar karo!")}
+                        >Forgot Password?</div>
+                      </div>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

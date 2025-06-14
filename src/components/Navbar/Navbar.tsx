@@ -1,16 +1,27 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { User } from "next-auth";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const user: User = session?.user as User;
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleLogOut= ()=>{
+    setIsLoading(true)
+    try {
+      signOut()
+    }finally{
+      setIsLoading(false)
+    }
+  }
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-gray-950 backdrop-blur-md border-b border-gray-800">
@@ -39,10 +50,18 @@ const Navbar = () => {
                     </p>
                 </div>
                 <Button
-                  onClick={() => signOut()}
+                disabled={isLoading}
+                  onClick={handleLogOut}
                   className="w-full bg-white hover:bg-slate-200 text-black cursor-pointer"
                 >
-                  Logout
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="animate-spin" />
+                      Logging Out
+                    </>
+                  ) : (
+                    "Logout"
+                  )}
                 </Button>
               </div>
             </PopoverContent>

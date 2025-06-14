@@ -14,36 +14,28 @@ import axios, { AxiosError } from "axios";
 import { Copy, RefreshCw } from "lucide-react";
 import { User } from "next-auth";
 import { useSession } from "next-auth/react";
-import {  useCallback, useEffect, useState } from "react";
+import {  useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 
 function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
-  const notifyError = (message: string) =>
-    toast.error(message, {
-      position: "bottom-right",
-      theme: "colored",
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
-  const notifySuccess = (message: string) =>
-    toast.success(message, {
-      position: "bottom-right",
-      theme: "colored",
-      closeOnClick: true,
-      pauseOnHover: true,
-    });
+  const notifyError = (message: string) =>(
+    toast.error(message))
+    
+  const notifySuccess = (message: string) =>(
+    toast.success(message))
+
 
     // Memoize the callback to avoid re-creating it on every render
     const handleDeleteMessage = useCallback( async(messageId: string)=>{
       setMessages( messages.filter((message)=> message._id !== messageId));
     },[messages])
 
-    const {data : session}= useSession()
+    const {data : session, status }= useSession()
 
     const form = useForm({
       resolver: zodResolver(acceptMessageSchema)
@@ -88,15 +80,20 @@ function Dashboard() {
           setIsSwitchLoading(false)
         }
 
-    },[setIsLoading, setIsSwitchLoading ])
+    },[])
 
 
+    // to handle double api fetching
+    const hasFetched = useRef(false);
     useEffect(()=>{
-      if(!session || !session?.user) return
+      if(status !== 'authenticated') return
+      if(hasFetched.current) return
+
+      hasFetched.current=true
 
       fetchMessages()
       fetchAcceptMessages()
-    },[session, fetchAcceptMessages, fetchMessages])
+    },[status, fetchAcceptMessages, fetchMessages])
 
 
     const handleSwitchChange= async()=>{
@@ -117,7 +114,7 @@ function Dashboard() {
 
     const {username} = session.user as User
 
-    const baseURL= `${window.location.protocol}//${window.location.hostname}`
+    const baseURL= `${window.location.protocol}//${window.location.host}`
     const profileURL= `${baseURL}/u/${username}`
 
     const copyToClipBoard= ()=>{
@@ -160,7 +157,7 @@ function Dashboard() {
             checked={acceptMessages}
             onCheckedChange={handleSwitchChange}
             disabled={isSwitchLoading}
-            className="dark"
+            className="dark cursor-pointer"
           />
         </div>
       </div>
@@ -177,6 +174,7 @@ function Dashboard() {
           size="sm"
           variant="secondary"
           className="text-sm px-3 py-2 cursor-pointer"
+          disabled={isLoading}
         >
           {isLoading ? (
             <RefreshCw className="h-4 w-4 mr-1 animate-spin" />
@@ -187,21 +185,21 @@ function Dashboard() {
         </Button>
       </div>
 
-      {/* Message list */}
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard
-              key={index} 
+              key={message._id || index}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />
           ))
         ) : (
-          <p className="text-gray-400 text-sm">No messages to display.</p>
+          <p className="text-gray-400 text-sm col-span-full text-center">No messages to display.</p>
         )}
       </div>
     </div>
+    
   </div>
 );
 }

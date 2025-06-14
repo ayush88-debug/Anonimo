@@ -40,11 +40,10 @@ export async function POST(request:Request) {
         return Response.json(
             {
                 success:false,
-                message:"successfully Updated accept message status",
+                message:"successfully Updated status",
                 UpdatedUser
             },{status: 200}
         )
-
 
         
     } catch (error) {

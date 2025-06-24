@@ -72,7 +72,7 @@ export default function SignUpForm() {
             const response= await axios.post<apiResponse>('/api/sign-up', data)
 
             notifySuccess(response.data.message)
-            router.replace(`/verify/${username}`)
+            router.push(`/verify/${username}`)
             
         } catch (err) {
 

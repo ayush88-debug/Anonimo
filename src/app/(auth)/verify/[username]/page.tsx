@@ -43,7 +43,7 @@ export default function VerifyPage() {
                 code: data.code
             })
             notifySuccess(response.data.message)
-            router.replace(`/sign-in`)
+            router.push(`/sign-in`)
         } catch (err) {
 
             const axiosError= err as AxiosError<apiResponse>

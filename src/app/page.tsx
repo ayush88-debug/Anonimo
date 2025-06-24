@@ -8,8 +8,10 @@ import Autoplay from 'embla-carousel-autoplay'
 import Link from "next/link";
 import { GithubIcon } from "lucide-react";
 import { LampContainer } from "@/components/ui/lamp";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
+   const router= useRouter()
 const demoMessages = [
   {
     title: "Hidden Confession",
@@ -72,9 +74,8 @@ const demoMessages = [
             Anonimo lets anyone send you anonymous messages. No signups. No pressure. Just honest thoughts.
           </p>
           <div className="flex justify-center gap-6">
-            <Link href={"/dashboard"}>
-              <Button className="bg-indigo-600 hover:bg-indigo-700 cursor-pointer">Try Anonimo</Button>
-            </Link>
+              <Button onClick={() => router.push('/dashboard')} className="bg-indigo-600 hover:bg-indigo-700 cursor-pointer">Try Anonimo</Button>
+            
             <Link href={"https://github.com/ayush88-debug/Anonimo"}>
               <Button variant="secondary" className="cursor-pointer"><GithubIcon/><span>GitHub</span></Button>
             </Link>

@@ -44,7 +44,7 @@ export default function SignUpForm() {
                 notifyError(result?.error || "Login Failed")
             }
             if (result?.url) {
-                router.replace('/dashboard');
+                router.push('/dashboard');
             }
         }finally{
             setIsSubmitting(false)

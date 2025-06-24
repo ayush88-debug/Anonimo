@@ -27,7 +27,6 @@ export async function sendVerificationMail(
             from: '"Ayush" <onboarding@anonimo.dev>',
             to: email,
             subject: "Anonimo App Verification Code",
-            text: "Hello world?", // plain‑text body
             html:  htmlBody, // HTML body
         });
         console.log("Message sent:", info.messageId);

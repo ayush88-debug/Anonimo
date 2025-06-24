@@ -35,7 +35,8 @@ export default function SignUpForm() {
         setIsSubmitting(true)
         try {
             const result= await signIn("credentials", {
-                redirect:false,
+                redirect: true,
+                callbackUrl: "/dashboard",
                 email:data.email,
                 password: data.password
             })

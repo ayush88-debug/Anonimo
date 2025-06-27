@@ -43,6 +43,7 @@ export default function SignUpForm() {
                 notifyError(result?.error || "Login Failed")
             }
             if (result?.url) {
+              setIsSubmitting(false)
               window.location.href = result.url;
             }
         }finally{

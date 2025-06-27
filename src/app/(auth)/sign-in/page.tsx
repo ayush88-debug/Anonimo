@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { zodResolver } from "@hookform/resolvers/zod"
 import {  useForm } from "react-hook-form"
@@ -18,7 +17,6 @@ import { signIn } from 'next-auth/react';
 export default function SignUpForm() {
 
     const [isSubmitting, setIsSubmitting]= useState(false)
-    const router = useRouter()
 
     const notifyError = (message: string) =>(
       toast.error(message))
@@ -45,7 +43,7 @@ export default function SignUpForm() {
                 notifyError(result?.error || "Login Failed")
             }
             if (result?.url) {
-                router.push('/dashboard');
+              window.location.href = result.url;
             }
         }finally{
             setIsSubmitting(false)
